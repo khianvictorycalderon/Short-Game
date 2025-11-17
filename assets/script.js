@@ -25,7 +25,7 @@ document.body.appendChild(blueSquare);
 let rx = 100, ry = 100; // red square
 let bx = 500, by = 500; // blue square
 const redSpeed = 5;      // red speed
-const blueSpeed = 7;     // blue speed (slightly faster)
+const blueSpeed = 10;     // blue speed (slightly faster)
 
 // Track pressed keys
 const keys = {};
