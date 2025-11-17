@@ -7,6 +7,8 @@ redSquare.style.width = `${redSize}px`;
 redSquare.style.height = `${redSize}px`;
 redSquare.style.background = 'red';
 redSquare.style.position = 'absolute';
+redSquare.style.top = '100px';
+redSquare.style.left = '100px';
 document.body.appendChild(redSquare);
 
 // Create the blue square
@@ -15,12 +17,15 @@ blueSquare.style.width = `${blueSize}px`;
 blueSquare.style.height = `${blueSize}px`;
 blueSquare.style.background = 'blue';
 blueSquare.style.position = 'absolute';
+blueSquare.style.top = '500px';
+blueSquare.style.left = '500px';
 document.body.appendChild(blueSquare);
 
 // Initial positions
 let rx = 100, ry = 100; // red square
 let bx = 500, by = 500; // blue square
-const speed = 5;
+const redSpeed = 5;      // red speed
+const blueSpeed = 6;     // blue speed (slightly faster)
 
 // Track pressed keys
 const keys = {};
@@ -44,10 +49,10 @@ const loop = () => {
   if (gameOver) return;
 
   // Red square (WASD)
-  if (keys["w"]) ry -= speed;
-  if (keys["s"]) ry += speed;
-  if (keys["a"]) rx -= speed;
-  if (keys["d"]) rx += speed;
+  if (keys["w"]) ry -= redSpeed;
+  if (keys["s"]) ry += redSpeed;
+  if (keys["a"]) rx -= redSpeed;
+  if (keys["d"]) rx += redSpeed;
 
   rx = Math.max(0, Math.min(window.innerWidth - redSize, rx));
   ry = Math.max(0, Math.min(window.innerHeight - redSize, ry));
@@ -55,10 +60,10 @@ const loop = () => {
   redSquare.style.top = `${ry}px`;
 
   // Blue square (Arrow keys)
-  if (keys["arrowup"]) by -= speed;
-  if (keys["arrowdown"]) by += speed;
-  if (keys["arrowleft"]) bx -= speed;
-  if (keys["arrowright"]) bx += speed;
+  if (keys["arrowup"]) by -= blueSpeed;
+  if (keys["arrowdown"]) by += blueSpeed;
+  if (keys["arrowleft"]) bx -= blueSpeed;
+  if (keys["arrowright"]) bx += blueSpeed;
 
   bx = Math.max(0, Math.min(window.innerWidth - blueSize, bx));
   by = Math.max(0, Math.min(window.innerHeight - blueSize, by));
