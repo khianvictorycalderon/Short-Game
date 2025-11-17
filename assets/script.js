@@ -23,6 +23,7 @@ redSquare.style.top = '100px';
 redSquare.style.left = '100px';
 redSquare.style.border = 'solid black 5px';
 redSquare.style.borderRadius = '8px';
+redSquare.style.boxSizing = `border-box`;
 document.body.appendChild(redSquare);
 
 // Create the blue square
@@ -35,6 +36,7 @@ blueSquare.style.top = '500px';
 blueSquare.style.left = '500px';
 blueSquare.style.border = 'solid black 5px';
 blueSquare.style.borderRadius = '8px';
+blueSquare.style.boxSizing = `border-box`;
 document.body.appendChild(blueSquare);
 
 // Initial positions
