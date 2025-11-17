@@ -21,6 +21,8 @@ redSquare.style.background = 'red';
 redSquare.style.position = 'absolute';
 redSquare.style.top = '100px';
 redSquare.style.left = '100px';
+redSquare.style.border = 'solid black 5px';
+redSquare.style.borderRadius = '8px';
 document.body.appendChild(redSquare);
 
 // Create the blue square
@@ -31,13 +33,15 @@ blueSquare.style.background = 'blue';
 blueSquare.style.position = 'absolute';
 blueSquare.style.top = '500px';
 blueSquare.style.left = '500px';
+blueSquare.style.border = 'solid black 5px';
+blueSquare.style.borderRadius = '8px';
 document.body.appendChild(blueSquare);
 
 // Initial positions
 let rx = 100, ry = 100; // red square
 let bx = 500, by = 500; // blue square
 const redSpeed = 5;
-const blueSpeed = 10;
+const blueSpeed = 9;
 
 // Track pressed keys
 const keys = {};
