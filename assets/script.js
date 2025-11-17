@@ -1,7 +1,7 @@
 // Create the red square
 const redSquare = document.createElement('div');
-redSquare.style.width = '50px';
-redSquare.style.height = '50px';
+redSquare.style.width = '100px';
+redSquare.style.height = '100px';
 redSquare.style.background = 'red';
 redSquare.style.position = 'absolute';
 redSquare.style.top = '100px';
