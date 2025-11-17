@@ -1,6 +1,18 @@
 const redSize = 100;
 const blueSize = 50;
 
+// Create the timer display
+const timerDisplay = document.createElement('div');
+timerDisplay.style.position = 'absolute';
+timerDisplay.style.top = '10px';
+timerDisplay.style.left = '50%';
+timerDisplay.style.transform = 'translateX(-50%)';
+timerDisplay.style.fontSize = '24px';
+timerDisplay.style.fontWeight = 'bold';
+timerDisplay.style.color = 'black';
+timerDisplay.textContent = 'Time Left: 30s';
+document.body.appendChild(timerDisplay);
+
 // Create the red square
 const redSquare = document.createElement('div');
 redSquare.style.width = `${redSize}px`;
@@ -24,19 +36,28 @@ document.body.appendChild(blueSquare);
 // Initial positions
 let rx = 100, ry = 100; // red square
 let bx = 500, by = 500; // blue square
-const redSpeed = 5;      // red speed
-const blueSpeed = 10;     // blue speed (slightly faster)
+const redSpeed = 5;
+const blueSpeed = 10;
 
 // Track pressed keys
 const keys = {};
 
 // Game timer
-const startTime = Date.now();
-const gameDuration = 60000; // 60 seconds
+let startTime = null;
+const gameDuration = 30000; // 30 seconds
 let gameOver = false;
+let gameStarted = false;
 
 // Key down/up
-document.addEventListener('keydown', e => keys[e.key.toLowerCase()] = true);
+document.addEventListener('keydown', e => {
+  keys[e.key.toLowerCase()] = true;
+
+  // Start the timer on first key press
+  if (!gameStarted) {
+    startTime = Date.now();
+    gameStarted = true;
+  }
+});
 document.addEventListener('keyup', e => keys[e.key.toLowerCase()] = false);
 
 // Collision detection
@@ -70,18 +91,23 @@ const loop = () => {
   blueSquare.style.left = `${bx}px`;
   blueSquare.style.top = `${by}px`;
 
-  // Check collision
-  if (checkCollision()) {
-    alert("Red wins!");
-    gameOver = true;
-    return;
-  }
+  // Update timer only if game started
+  if (gameStarted) {
+    const elapsed = Date.now() - startTime;
+    const remaining = Math.max(0, Math.ceil((gameDuration - elapsed) / 1000));
+    timerDisplay.textContent = `Time Left: ${remaining}s`;
 
-  // Check timer
-  if (Date.now() - startTime >= gameDuration) {
-    alert("Blue wins!");
-    gameOver = true;
-    return;
+    if (checkCollision()) {
+      alert("Red wins!");
+      gameOver = true;
+      return;
+    }
+
+    if (elapsed >= gameDuration) {
+      alert("Blue wins!");
+      gameOver = true;
+      return;
+    }
   }
 
   requestAnimationFrame(loop);
